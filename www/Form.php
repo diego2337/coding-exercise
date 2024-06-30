@@ -5,16 +5,16 @@ class Form {
     protected $_inputs;
 
     public function __construct() {
-        $this->_header = `
+        $this->_header = "
             <!DOCTYPE html>
-            <html lang="en">
+            <html lang=\"en\">
             <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta charset=\"UTF-8\">
+                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
                 <title>Simple Form</title>
-                <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+                <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/style.css\" />
             </head>
-        `;
+        ";
         $this->_inputs = [];
     }
 
@@ -41,7 +41,10 @@ class Form {
      * returns the value of the input by $name
      */
     public function getValue($name) {
-        // TODO
+        $itemToBeFound = array_reduce($this->_inputs, static function ($carry, $item) use($name) {
+            return $carry ?? ($item->name() == $name ? $item : $carry);
+        }, null);
+        return isset($itemToBeFound) ? $itemToBeFound->getValue() : null;
     }
 
     /**
@@ -49,19 +52,19 @@ class Form {
      */
     public function display() {
         $inputs = [];
-        
         foreach ($this->_inputs as $input) {
             array_push($inputs, $input->render());
         }
-        $display = $this->_header . `<body>
-                <div class="form-container">
-                    <form class="form-box" action="#" method="post">`;
+        $display = $this->_header . "<body>
+                <div class=\"form-container\">
+                    <form class=\"form-box\" method=\"post\">";
         $display = $display . implode('', $inputs);
-        echo $display . `        
+        echo $display . "
+                    <input type=\"submit\" value=\"SUBMIT\">      
                     </form>
                 </div>
             </body>
             </html>
-        `;
+        ";
     }
 }

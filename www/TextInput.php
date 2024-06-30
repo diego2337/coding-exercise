@@ -7,15 +7,17 @@ class TextInput extends Input {
     }
 
     public function validate() {
-        echo 'method yet not implemented';
+        return true;
+        return is_string($name) && is_string($label) && is_string($initVal);
     }
 
     public function render() {
-        $label = Input::render();
-        return $label . $this->_renderSetting();
+        $label = "<div class=\"form-group\">" . Input::render();
+        return $label . $this->_renderSetting() . "</div>";
+        
     }
 
     protected function _renderSetting() {
-        return `<input type="text" id="$this->_label" name="$this->_label"><br>`;
+        return "<input type=\"text\" id=\"$this->_label\" name=\"$this->_label\" value=\"$this->_initVal\"><br>";
     }
 }

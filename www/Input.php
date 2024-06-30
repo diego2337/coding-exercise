@@ -26,9 +26,9 @@ abstract class Input {
      *  html form element is displayed (such as a text box, radio button, select, etc)
      */
     public function render() {
-        return `
-            <label for="$this->_label">$this->_initVal</label><br>
-        `;
+        return "
+            <label for=\"$this->_label\">$this->_label</label><br>
+        ";
     }
 
     /**
