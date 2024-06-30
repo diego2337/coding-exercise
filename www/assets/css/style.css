@@ -14,11 +14,22 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-.form-box input[type="text"] {
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.form-group label {
+    width: 100px;
+    margin-right: 10px;
+    text-align: right;
+}
+.form-group input[type="text"] {
     width: 200px;
     padding: 5px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
